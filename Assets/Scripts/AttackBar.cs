@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class AttackBar : BarItem
 {
@@ -12,17 +11,14 @@ public class AttackBar : BarItem
 
     void Update()
     {
-        Image bar = GetComponent<Image>();
-        bar.fillAmount = value * 0.2f;
+        GameObject obj = (Image) GameObject.FindWithTag("AFiller");
+        obj.fill
+        value + 0.2f;
+        this.fillAmount = value;
         if (value == maxValue)
         {
-            StartCoroutine(InvokeFilledAttack());
+            //EventManager.Instance.attackFilledEvent.Invoke();
+            value = 0;
         }
-    }
-    IEnumerator InvokeFilledAttack()
-    {
-        yield return new WaitForSeconds(0.5f);
-        EventManager.Instance.attackFilledEvent.Invoke();
-        value = 0;
     }
 }
